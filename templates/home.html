@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Lecture Time</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8; /* Light background color */
+            margin: 0;
+            padding: 0;
+            display: flex; /* Center the form */
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+        }
+
+        form {
+            background-color: #ffffff; /* White background for the form */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            padding: 30px; /* Padding for the form */
+            width: 300px; /* Fixed width for the form */
+            text-align: center; /* Center text */
+        }
+
+        label {
+            display: block; /* Block display for label */
+            margin-bottom: 10px; /* Space below label */
+            font-weight: bold; /* Bold text for label */
+            color: #333; /* Dark text color */
+        }
+
+        select {
+            width: 100%; /* Full width */
+            padding: 10px; /* Padding for select */
+            margin-bottom: 20px; /* Space below select */
+            border: 2px solid #007bff; /* Blue border */
+            border-radius: 5px; /* Rounded corners for select */
+            font-size: 16px; /* Font size */
+            background-color: #f8f9fa; /* Light background for select */
+            transition: border-color 0.3s; /* Smooth transition */
+        }
+
+        select:focus {
+            border-color: #0056b3; /* Darker blue on focus */
+            outline: none; /* Remove default outline */
+        }
+
+        input[type="submit"] {
+            background-color: #007bff; /* Blue background for button */
+            color: white; /* White text */
+            border: none; /* No border */
+            padding: 12px; /* Padding for button */
+            border-radius: 5px; /* Rounded corners for button */
+            cursor: pointer; /* Pointer cursor */
+            font-size: 16px; /* Font size */
+            transition: background-color 0.3s; /* Smooth transition */
+            width: 100%; /* Full width */
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+    <form action="{{ url_for('change_me') }}" id="change_me" name="change_me" method="POST">
+        <label for="time">Lecture Time</label>
+        <select name="time" id="time">
+            {% for lecture in lectures %}
+                <option value="{{ lecture }}">{{ lecture }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

@@ -1,0 +1,84 @@
+{% extends "dropdown.html" %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+  <div class="row">
+    <div class="col-md-3">
+      {% include 'filterbox.html' %}
+    </div>
+
+    <div class="col-md-9">
+      {% if student=='overall'%}
+      <h1 class="text-center">Math 118 {{selected_time}}</h1>
+      {% else %}
+      <h1 class="text-center">{{ student }}</h1>
+      {% endif %}
+      <div class="row">
+        {% for graph_name, graph_data in graphs.items() %}
+        <div class="col-md-6 mb-4">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">{{ graph_name.replace('_', ' ').title() }}</h5>
+              <img src="data:image/png;base64,{{ graph_data }}" alt="{{ graph_name }} Graph" class="img-fluid" style="cursor:pointer;" onclick="showGraphInModal('{{ graph_name.replace('_', ' ') }}', 'data:image/png;base64,{{ graph_data }}')">
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="graphModal" tabindex="-1" aria-labelledby="graphModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">  <!-- Make the modal large -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="graphModalLabel">Graph View</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <img id="modalGraphImage" src="" alt="Graph" class="img-fluid">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript for triggering the modal -->
+<script>
+  function showGraphInModal(graphTitle, graphSrc) {
+    // Set the modal title and graph source
+    document.getElementById('graphModalLabel').innerText = graphTitle;
+    document.getElementById('modalGraphImage').src = graphSrc;
+    console.log(graphSrc);
+    // Show the modal
+    var myModal = new bootstrap.Modal(document.getElementById('graphModal'));
+    myModal.show();
+  }
+</script>
+
+<style>
+  .modal-dialog {
+      /* Optional: Set a specific width if desired */
+      <!-- max-width: 80%; /* Adjust as needed */ -->
+  }
+
+  .modal-content {
+      padding: 5px; /* Decrease padding inside the modal */
+  }
+
+  .modal-header {
+      padding: 2px; /* Decrease padding in the header */
+  }
+
+  .modal-body {
+      padding: 10px; /* Decrease padding in the body */
+  }
+
+  .modal-footer {
+      padding: 5px; /* Decrease padding in the footer */
+  }
+</style>
+
+
+{% endblock %}

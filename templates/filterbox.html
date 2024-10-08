@@ -1,0 +1,56 @@
+<!-- filter_box.html -->
+<!-- filter_box.html -->
+<div class="card mb-4">
+  <div class="card-body">
+    <h4 class="text-center">Filters</h4>
+    <form id="filterForm" action="{{ url_for('hud') }}" method="POST">
+      <div class="mb-3">
+        <label for="time" class="form-label">Choose Time</label>
+        <select name="time" id="time" class="form-select" onchange="updateStudents()">
+          {% for lecture in lectures %}
+            <option value="{{ lecture }}" {% if lecture == selected_time %}selected{% endif %}>{{ lecture }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="student" class="form-label">Choose Student</label>
+        <select name="student" id="student" class="form-select">
+          {% for student in students %}
+            <option value="{{ student }}" {% if student == selected_student %}selected{% endif %}>{{ student }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="week" class="form-label">Choose Week</label>
+        <select name="week" id="week" class="form-select">
+          {% for week in weeks %}
+            <option value="{{ week }}" {% if week == selected_week %}selected{% endif %}>{{ week }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
+
+
+<script>
+function updateStudents() {
+    var time = document.getElementById("time").value;
+
+    fetch('/get_students?time=' + time)
+        .then(response => response.json())
+        .then(data => {
+            var studentSelect = document.getElementById("student");
+            studentSelect.innerHTML = ""; // Clear existing options
+
+            data.students.forEach(function(student) {
+                var option = document.createElement("option");
+                option.value = student;
+                option.textContent = student;
+                studentSelect.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error:', error));
+}
+</script>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e9ecef; /* Light gray background */
+            margin: 0;
+            padding: 0;
+            display: flex; /* Center the form */
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+        }
+
+        form {
+            background-color: #ffffff; /* White background for the form */
+            border-radius: 10px; /* More rounded corners */
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15); /* Subtle shadow */
+            padding: 30px; /* Increased padding */
+            width: 400px; /* Wider form */
+        }
+
+        h2 {
+            text-align: center; /* Centered heading */
+            margin-bottom: 20px; /* Space below heading */
+            color: #333; /* Darker text color */
+        }
+
+        label {
+            display: block; /* Block display for labels */
+            margin-bottom: 8px; /* Space below labels */
+            font-weight: bold; /* Bold text for labels */
+            color: #555; /* Softer color for labels */
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%; /* Full width */
+            padding: 12px; /* Padding for inputs */
+            margin-bottom: 20px; /* Space below inputs */
+            border: 2px solid #ced4da; /* Slightly thicker border */
+            border-radius: 5px; /* Rounded corners for inputs */
+            font-size: 16px; /* Larger font size */
+            box-sizing: border-box; /* Include padding in width */
+        }
+
+        input[type="submit"] {
+            background-color: #007bff; /* blue background */
+            color: white; /* White text */
+            border: none; /* No border */
+            padding: 12px; /* Padding for the button */
+            border-radius: 5px; /* Rounded corners for button */
+            cursor: pointer; /* Pointer cursor */
+            font-size: 18px; /* Larger font size */
+            transition: background-color 0.3s; /* Smooth transition */
+            width: 100%; /* Full width */
+        }
+
+        input[type="submit"]:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+
+        }
+    </style>
+</head>
+<body>
+    <form method="post">
+        <h2>Login</h2> <!-- Added a title -->
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" required>
+
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required>
+
+        <input type="submit" value="Log In">
+    </form>
+</body>
+</html>
