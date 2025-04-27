@@ -15,6 +15,6 @@ with engine.connect() as conn:
         print(row)
 
 with engine.connect() as conn:
-    result = conn.execute(text("SELECT * FROM Responses WHERE student = 'Trisha Prasanna' AND quiz_number = 5"))
+    result = conn.execute(text("SELECT * FROM Responses WHERE student = 'ENTER STUDENT NAME HERE' AND quiz_number = 5"))
     for row in result:
         print(row)
